@@ -141,8 +141,8 @@
 
 		var div = document.createElement( 'div'  );
 		div.className = 'cloudBase';
-		var x = 256 - ( 0.25 * 512 );
-		var y = 256 - ( 0.5 * 512 );
+		var x = 256 - ( Math.random() * 512 );
+		var y = 256 - ( Math.random() * 512 );
 		var z = 256 - ( Math.random() * 512 );
 		var t = 'translateX( ' + x + 'px ) translateY( ' + y + 'px ) translateZ( ' + z + 'px )';
 		div.style.webkitTransform = t;
@@ -161,8 +161,8 @@
 			cloud.setAttribute( 'src', src );
 			cloud.className = 'cloudLayer';
 
-			var x = 256 - ( 0 * 512 );
-			var y = 256 - ( 1 * 512 );
+			var x = 256 - ( Math.random() * 512 );
+			var y = 256 - ( Math.random() * 512 );
 			var z = 100 - ( Math.random() * 200 );
 			var a = Math.random() * 360;
 			var s = .25 + Math.random();
@@ -175,7 +175,7 @@
 				s: s,
 				speed: .1 * Math.random()
 			};
-			var t = 'translateX( ' + (-x) + 'px ) translateY( ' + (-y) + 'px ) translateZ( ' + (-z) + 'px ) scale( ' + s + ')';
+			var t = 'translateX( ' + (x) + 'px ) translateY( ' + (y) + 'px ) translateZ( ' + (z) + 'px ) scale( ' + s + ')';
 			cloud.style.webkitTransform = t;
 			cloud.style.MozTransform = t;
 			cloud.style.oTransform = t;
@@ -241,10 +241,8 @@
 		for( var j = 0; j < layers.length; j++ ) {
 			var layer = layers[ j ];
 			layer.data.a += layer.data.speed;
-            layer.data.x = (layer.data.x+1)%screen.width;
-            layer.data.j = (layer.data.j+1)%screen.height;
             // var t = 'translateX( ' + layer.data.x + 'px ) translateY( ' + layer.data.y + 'px ) translateZ( ' + layer.data.z + 'px ) rotateY( ' + ( - worldYAngle ) + 'deg ) rotateX( ' + ( - worldXAngle ) + 'deg ) rotateZ( ' + layer.data.a + 'deg ) scale( ' + layer.data.s + ')';
-			var t = 'translateX( ' + (layer.data.x*j) + 'px ) translateY( ' + (layer.data.y*j) + 'px ) translateZ( ' + (layer.data.z*j) + 'px ) rotateY( ' + ( - worldYAngle ) + 'deg ) rotateX( ' + ( - worldXAngle ) + 'deg ) rotateZ( ' + layer.data.a + 'deg )';
+			var t = 'translateX( ' + (layer.data.x*j) + 'px ) translateY( ' + (layer.data.y*j) + 'px ) translateZ( ' + (layer.data.z*j) + 'px ) rotateY( ' + ( - worldYAngle ) + 'deg ) rotateX( ' + ( - worldXAngle ) + 'deg ) rotateZ( ' + layer.data.a + 'deg ) scale( ' + layer.data.s + ')';
 			layer.style.webkitTransform = t;
 			layer.style.MozTransform = t;
 			layer.style.oTransform = t;
