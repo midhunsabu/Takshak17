@@ -31,14 +31,13 @@
 		background-image: -webkit-linear-gradient(bottom, rgb(69,132,180) 28%, rgb(31,71,120) 64%);
 		background-image: -ms-linear-gradient(bottom, rgb(69,132,180) 28%, rgb(31,71,120) 64%); */
 
-		 /* background-image: -webkit-gradient(
+		 background-image: -webkit-gradient(
 			linear,
 			left bottom,
 			left top,
 			color-stop(0.28, rgb(69,132,180)),
 			color-stop(0.64, rgb(31,71,120))
-		);  */
-		background: grey;
+		); 
 	}
 
 	#world {
@@ -64,9 +63,10 @@
 	.cloudBase {
 		/* background-color: rgba( 255, 0, 255, .5 ); */
 		position: absolute;
-		width: 100%;
-		height: 100%;
-		/* background-image: url('cloud.png'); */
+		left: 256px;
+		top: 256px;
+		width: 20px;
+		height: 20px;
 		margin-left: -10px;
 		margin-top: -10px;
 	}
@@ -90,9 +90,6 @@
 
 	<div id="viewport" >
 		<div id="world" >
-			<div id = "cloudBase">
-				<img class="cloudLayer" id="bimg" style="opacity:0.5" src="cloud.png"/>
-			</div>
 		</div>
 	</div>
 
@@ -142,24 +139,16 @@
 
 	function createCloud() {
 
-		var div = document.getElementById('cloudBase');
+		var div = document.createElement( 'div'  );
 		div.className = 'cloudBase';
-		// var x = 256 - ( Math.random() * 512 );
-		// var y = 256 - ( Math.random() * 512 );
-		// var z = 256 - ( Math.random() * 512 );
-		// var t = 'translateX( ' + x + 'px ) translateY( ' + y + 'px ) translateZ( ' + z + 'px )';
-		// div.style.webkitTransform = t;
-		// div.style.MozTransform = t;
-		// div.style.oTransform = t;
-		// world.appendChild( div );
-
-		var bimg = document.getElementById('bimg');
-		var t = 'translateZ( 300px )';
-		bimg.style.webkitTransform = t;
-		bimg.style.MozTransform = t;
-		bimg.style.oTransform = t;
-		// world.appendChild( div );
-		// layers.push(bimg);
+		var x = 256 - ( Math.random() * 512 );
+		var y = 256 - ( Math.random() * 512 );
+		var z = 256 - ( Math.random() * 512 );
+		var t = 'translateX( ' + x + 'px ) translateY( ' + y + 'px ) translateZ( ' + z + 'px )';
+		div.style.webkitTransform = t;
+		div.style.MozTransform = t;
+		div.style.oTransform = t;
+		world.appendChild( div );
 
 		for( var j = 0; j < 5 + Math.round( Math.random() * 10 ); j++ ) {
 			var cloud = document.createElement( 'img' );
@@ -228,13 +217,12 @@
 
 		objects = [];
 
-		// if ( world.hasChildNodes() ) {
-		// 	while ( world.childNodes.length >= 1 ) {
-		// 		world.removeChild( world.firstChild );
-		// 	}
-		// }
-		
-		objects.push(document.getElementById('bimg'));
+		if ( world.hasChildNodes() ) {
+			while ( world.childNodes.length >= 1 ) {
+				world.removeChild( world.firstChild );
+			}
+		}
+
 		for( var j = 0; j < 5; j++ ) {
 			objects.push( createCloud() );
 		}
@@ -247,8 +235,7 @@
 		world.style.MozTransform = t;
 		world.style.oTransform = t;
 	}
-	var zbing = 60;
-	var zspeed = 0.004;
+
 	function update (){
 
 		for( var j = 0; j < layers.length; j++ ) {
@@ -260,14 +247,6 @@
 			layer.style.MozTransform = t;
 			layer.style.oTransform = t;
 		}
-		var layer = document.getElementById('bimg');
-		zbing = zbing + zspeed;
-		// layer.data.a += layer.data.speed;
-		// var t = 'translateX( ' + layer.data.x + 'px ) translateY( ' + layer.data.y + 'px ) translateZ( ' + layer.data.z + 'px ) rotateY( ' + ( - worldYAngle ) + 'deg ) rotateX( ' + ( - worldXAngle ) + 'deg ) rotateZ( ' + layer.data.a + 'deg ) scale( ' + layer.data.s + ')';
-		var t = 'translateZ( 300px ) rotateY( ' + ( - worldYAngle ) + 'deg ) rotateX( ' + ( - worldXAngle ) + 'deg ) rotateZ('+zbing+'deg)';
-		layer.style.webkitTransform = t;
-		layer.style.MozTransform = t;
-		layer.style.oTransform = t;
 
 		requestAnimationFrame( update );
 
