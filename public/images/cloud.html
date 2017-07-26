@@ -19,6 +19,7 @@
 		-webkit-perspective: 1000;
 		-moz-perspective: 1000;
 		-o-perspective: 1000;
+		perspective: 1000;
 		position: absolute;
 		left: 0;
 		top: 0;
@@ -69,6 +70,7 @@
 		/* background-image: url('cloud.png'); */
 		margin-left: -10px;
 		margin-top: -10px;
+		z-index: 1;
 	}
 
 	.cloudLayer {
@@ -83,13 +85,48 @@
 		-webkit-transition: opacity .5s ease-out;
 		-moz-transition: opacity .5s ease-out;
 		-o-transition: opacity .5s ease-out;
+		transition: opacity 0.5s ease-out;
+		z-index: 5;
 	}
-	</style>
+	#title{
+		height:0px;
+		opacity: 0;
+		/* width:600px; */
+		margin-left: -150px;
+		-webkit-transition: 50s;
+		-moz-transition: 50s;
+		-o-transition: 50s;
+		transition: 50s;
+		z-index: 0;
+	}
+	#titleBase{
+		height:500px;
+		width:600px;
+	}
+	#bimg3{
+		-webkit-transition: 40s;
+		-moz-transition: 40s;
+		-o-transition: 40s;
+		transition: 40s;
+	}
+</style>
+<script>
+	var titleFunc = function(){
+		var title = document.getElementById('title');
+		title.style.height= "500px";
+		title.style.opacity="1";
+		document.getElementById('bimg3').style.opacity="0";
+	}
+	</script>
 	</head>
-	<body>
+	<body onload="titleFunc()">
 
 	<div id="viewport" >
 		<div id="world" >
+			<div id="titleBase">
+				<img id="title" src="Title.png"/>
+				<img class="cloudLayer" id="bimg3" style="opacity:1" src="cloud.png"/>
+			</div>
 			<div id = "cloudBase">
 				<img class="cloudLayer" id="bimg" style="opacity:0.3" src="cloud.png"/>
 				<img class="cloudLayer" id="bimg2" style="opacity:0.4" src="cloud.png"/>
@@ -164,6 +201,11 @@
 		bimg2.style.webkitTransform = t;
 		bimg2.style.MozTransform = t;
 		bimg2.style.oTransform = t;
+		var bimg3 = document.getElementById('bimg3');
+		var t = 'translateZ( 400px )';
+		bimg3.style.webkitTransform = t;
+		bimg3.style.MozTransform = t;
+		bimg3.style.oTransform = t;
 		// world.appendChild( div );
 		// layers.push(bimg);
 
@@ -173,7 +215,7 @@
 			var r = Math.random();
 			var src = 'cloud.png';
 			( function( img ) { img.addEventListener( 'load', function() {
-				img.style.opacity = .5;
+				img.style.opacity = .4;
 			} ) } )( cloud );
 			cloud.setAttribute( 'src', src );
 			cloud.className = 'cloudLayer';
@@ -279,6 +321,14 @@
 		// layer.data.a += layer.data.speed;
 		// var t = 'translateX( ' + layer.data.x + 'px ) translateY( ' + layer.data.y + 'px ) translateZ( ' + layer.data.z + 'px ) rotateY( ' + ( - worldYAngle ) + 'deg ) rotateX( ' + ( - worldXAngle ) + 'deg ) rotateZ( ' + layer.data.a + 'deg ) scale( ' + layer.data.s + ')';
 		var t = 'translateX(100px) translateZ( 270px ) rotateY( ' + ( - worldYAngle ) + 'deg ) rotateX( ' + ( - worldXAngle ) + 'deg ) rotateZ('+(-zbing)+'deg)';
+		layer.style.webkitTransform = t;
+		layer.style.MozTransform = t;
+		layer.style.oTransform = t;
+		var layer = document.getElementById('bimg3');
+		zbing = zbing + zspeed;
+		// layer.data.a += layer.data.speed;
+		// var t = 'translateX( ' + layer.data.x + 'px ) translateY( ' + layer.data.y + 'px ) translateZ( ' + layer.data.z + 'px ) rotateY( ' + ( - worldYAngle ) + 'deg ) rotateX( ' + ( - worldXAngle ) + 'deg ) rotateZ( ' + layer.data.a + 'deg ) scale( ' + layer.data.s + ')';
+		var t = 'translateZ( 345px ) rotateY( ' + ( - worldYAngle ) + 'deg ) rotateX( ' + ( - worldXAngle ) + 'deg ) rotateZ('+(-zbing)+'deg)';
 		layer.style.webkitTransform = t;
 		layer.style.MozTransform = t;
 		layer.style.oTransform = t;
