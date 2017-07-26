@@ -1,9 +1,4 @@
-# Thor -  Node Server in TypeScript
-
-# Pre-reqs
-- Install [Node.js](https://nodejs.org/en/)
-- Install [MongoDB](https://docs.mongodb.com/manual/installation/)
-- Install [VS Code](https://code.visualstudio.com/)
+# Takshak Website
 
 # Getting started
 - Move to your webserver directory
