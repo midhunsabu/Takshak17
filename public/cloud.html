@@ -39,7 +39,7 @@
 			color-stop(0.28, rgb(69,132,180)),
 			color-stop(0.64, rgb(31,71,120))
 		);  */
-		background: grey;
+		background: black;
 	}
 
 	#world {
@@ -89,25 +89,25 @@
 		z-index: 5;
 	}
 	#title{
-		height:0px;
+		height:150px;
 		opacity: 0;
 		/* width:600px; */
 		margin-left: -150px;
 		-webkit-transition: 50s;
 		-moz-transition: 50s;
 		-o-transition: 50s;
-		transition: 50s;
+		transition: 30s;
 		z-index: 0;
 	}
 	#titleBase{
 		height:500px;
 		width:600px;
 	}
-	#bimg3{
+	.bimg3{
 		-webkit-transition: 40s;
 		-moz-transition: 40s;
 		-o-transition: 40s;
-		transition: 40s;
+		transition: 20s;
 	}
 </style>
 <script>
@@ -115,7 +115,9 @@
 		var title = document.getElementById('title');
 		title.style.height= "500px";
 		title.style.opacity="1";
-		document.getElementById('bimg3').style.opacity="0";
+		document.getElementsByName('bimg3').forEach(function(cloud){
+			cloud.style.opacity="0.2";
+		})
 	}
 	</script>
 	</head>
@@ -124,12 +126,14 @@
 	<div id="viewport" >
 		<div id="world" >
 			<div id="titleBase">
+				
 				<img id="title" src="./images/Title.png"/>
-				<img class="cloudLayer" id="bimg3" style="opacity:1" src="./images/cloud.png"/>
+				 <img class="cloudLayer bimg3" name="bimg3" style="opacity:1" src="./images/cloud.png"/>   
+				<img class="cloudLayer bimg3" name="bimg3" style="opacity:1" src="./images/cloud.png"/> 
 			</div>
 			<div id = "cloudBase">
-				<img class="cloudLayer" id="bimg" style="opacity:0.3" src="./images/cloud.png"/>
-				<img class="cloudLayer" id="bimg2" style="opacity:0.4" src="./images/cloud.png"/>
+				 <img class="cloudLayer" id="bimg" style="opacity:0.3" src="./images/cloud.png"/> 
+				 <img class="cloudLayer" id="bimg2" style="opacity:0.4" src="./images/cloud.png"/> 
 			</div>
 		</div>
 	</div>
@@ -201,13 +205,14 @@
 		bimg2.style.webkitTransform = t;
 		bimg2.style.MozTransform = t;
 		bimg2.style.oTransform = t;
-		var bimg3 = document.getElementById('bimg3');
-		var t = 'translateZ( 400px )';
-		bimg3.style.webkitTransform = t;
-		bimg3.style.MozTransform = t;
-		bimg3.style.oTransform = t;
-		// world.appendChild( div );
-		// layers.push(bimg);
+		document.getElementsByName('bimg3').forEach(function(cloud){
+			var t = 'translateZ( 400px )';
+			cloud.style.webkitTransform = t;
+			cloud.style.MozTransform = t;
+			cloud.style.oTransform = t;
+			// world.appendChild( div );
+			// layers.push(bimg);
+		})
 
 		for( var j = 0; j < 5 + Math.round( Math.random() * 10 ); j++ ) {
 			var cloud = document.createElement( 'img' );
@@ -324,15 +329,16 @@
 		layer.style.webkitTransform = t;
 		layer.style.MozTransform = t;
 		layer.style.oTransform = t;
-		var layer = document.getElementById('bimg3');
-		zbing = zbing + zspeed;
-		// layer.data.a += layer.data.speed;
-		// var t = 'translateX( ' + layer.data.x + 'px ) translateY( ' + layer.data.y + 'px ) translateZ( ' + layer.data.z + 'px ) rotateY( ' + ( - worldYAngle ) + 'deg ) rotateX( ' + ( - worldXAngle ) + 'deg ) rotateZ( ' + layer.data.a + 'deg ) scale( ' + layer.data.s + ')';
-		var t = 'translateZ( 345px ) rotateY( ' + ( - worldYAngle ) + 'deg ) rotateX( ' + ( - worldXAngle ) + 'deg ) rotateZ('+(-zbing)+'deg)';
-		layer.style.webkitTransform = t;
-		layer.style.MozTransform = t;
-		layer.style.oTransform = t;
-
+		var layer = document.getElementsByName('bimg3');
+		layer.forEach(function(cloud) {
+			zbing = zbing + zspeed;
+			// layer.data.a += layer.data.speed;
+			// var t = 'translateX( ' + layer.data.x + 'px ) translateY( ' + layer.data.y + 'px ) translateZ( ' + layer.data.z + 'px ) rotateY( ' + ( - worldYAngle ) + 'deg ) rotateX( ' + ( - worldXAngle ) + 'deg ) rotateZ( ' + layer.data.a + 'deg ) scale( ' + layer.data.s + ')';
+			var t = 'translateZ( 345px ) rotateY( ' + ( - worldYAngle ) + 'deg ) rotateX( ' + ( - worldXAngle ) + 'deg ) rotateZ('+(-zbing)+'deg)';
+			cloud.style.webkitTransform = t;
+			cloud.style.MozTransform = t;
+			cloud.style.oTransform = t;
+		}, this);
 		requestAnimationFrame( update );
 
 	}

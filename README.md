@@ -5,6 +5,7 @@
 ```
 cd /var/www/html - for Linux
 ```
+```
 cd C:\wamp64\www\ - for windows running wamp
 ```
 cd  /Users/<username>/Sites/ -if you are using user level directory
