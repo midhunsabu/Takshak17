@@ -96,7 +96,7 @@
 		-webkit-transition: 50s;
 		-moz-transition: 50s;
 		-o-transition: 50s;
-		transition: 30s;
+		transition: 25s;
 		z-index: 0;
 	}
 	#titleBase{
@@ -118,6 +118,10 @@
 		document.getElementsByName('bimg3').forEach(function(cloud){
 			cloud.style.opacity="0.2";
 		})
+		setTimeout(function(){
+			title.style.height = "300px";
+			title.style.transform = "translateY(-170px)";
+		}, 20000);
 	}
 	</script>
 	</head>
